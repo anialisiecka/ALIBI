@@ -115,4 +115,4 @@ def linSort(infile, outfile):
             addEdgeBetweenComponents(e, blocks)
             G.addEdge(e[0], e[2])
     connect_components(blocks)
-    write(infile, outfile, blocks)                
+    write(infile, outfile, blocks)
