@@ -13,7 +13,7 @@ k <- as.numeric(args[2])
 gname="chr13_KI270842v1_alt"
 
 # number of simulated sequences
-m = 5
+m = 10
 
 
 simSVn <- function(gname, m, n, k){
