@@ -1,4 +1,4 @@
-rom setuptools import setup
+from setuptools import setup
 
 setup(name='alibi',
       version='0.1',
