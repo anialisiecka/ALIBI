@@ -116,3 +116,11 @@ def linSort(infile, outfile):
             G.addEdge(e[0], e[2])
     connect_components(blocks)
     write(infile, outfile, blocks)
+
+def main():
+    infile = sys.argv[1]
+    outfile = sys.argv[2]
+    linSort(infile, outfile)
+
+if __name__ == "__main__":
+    main()
