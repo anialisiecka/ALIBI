@@ -1,4 +1,4 @@
-You can use the follownig code to download a list of gene IDs from NCBI.
+You can use the follownig code to download genome records from NCBI.
 
 ```python
 from Bio import Entrez, SeqIO
