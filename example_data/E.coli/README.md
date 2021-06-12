@@ -4,8 +4,8 @@ You can use the follownig code to download genome records from NCBI.
 from Bio import Entrez, SeqIO
 Entrez.email="test@test.org"
 
-input_file = open("example.txt","r")
-output_file = open("output.fa","w")
+input_file = open("example_input.txt","r")
+output_file = open("example_output.fa","w")
 acc = ""
 
 for line in input_file:
