@@ -97,11 +97,12 @@ def connect_components(blocks):
             else:
                 block.reorder(d[block.find()] + block.order())
 
-def linSort(infile, outfile): 
+def linSort(infile): 
     # blocks - list of Block instances
     # edges - list of edges sorted by the weight
     blocks, edges = read(infile)
     G = Graph(len(blocks))
+    outfile = os.path.splitext(infile)[0]+"_sorted.gfa"
     for e, w in edges:
         if blocks[e[0]].find() is blocks[e[2]].find():
             if blocks[e[0]].orientation()*blocks[e[2]].orientation() is e[1]*e[3]:
@@ -119,8 +120,7 @@ def linSort(infile, outfile):
 
 def main():
     infile = sys.argv[1]
-    outfile = sys.argv[2]
-    linSort(infile, outfile)
+    linSort(infile)
 
 if __name__ == "__main__":
     main()
