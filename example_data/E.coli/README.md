@@ -3,5 +3,6 @@ You can use [this script](./runBio.py) to download genome records from NCBI usin
 It is assumed that you have a text file of NCBI GenBank accession numbers, one accession number per line (see [acc_numbers.txt](./acc_numbers.txt) as an example).
 
 ```
-python3 runBio.py your_email_address text_file_of_accession_numbers
+python3 runBio.py <your_email_address> <text_file_of_accession_numbers>
 ```
+The corresponding fasta file will be downloaded. The file will carry the same name as the input file, but with .fa extension.
