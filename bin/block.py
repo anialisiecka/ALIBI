@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 class Block:
     def __init__(self, block_id, seq):
         self.id = block_id
