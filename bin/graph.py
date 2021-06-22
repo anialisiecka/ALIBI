@@ -4,7 +4,6 @@ class Graph:
     def __init__(self, n):
         self.size=n     # number of vertices
         self.graph=defaultdict(list)    # default dictionary to store graph
-        self.waitingEdges=[]
         self.fa=set()   # set of feedback arcs
         self.rj=set()    # set of reversing joins
 
