@@ -8,11 +8,24 @@ def strand(x):
     else: return -1
 
 def reverseComplement(seq):
-    d = {'A':'T', 'T':'A', 'C':'G', 'G':'C'}
+    d = {'A':'T', 'T':'A', 'C':'G', 'G':'C', 'a':'t', 't':'a', 'c':'g', 'g':'c'}
     rc=''
     for i in range(len(seq)-1, -1, -1):
         rc+=d[seq[i]]
     return rc
+
+def reverseCigar(cigar):
+    new_cigar = []
+    x = ''
+    for i in range(len(cigar)):
+        if cigar[i].isdigit():
+            x += cigar[i]
+        else:
+            x += cigar[i]
+            new_cigar.append(x)
+            x = ''
+    new_cigar.reverse()
+    return ''.join(new_cigar)
 
 def write(infile, outfile, blocks):
     links=[]
@@ -21,7 +34,7 @@ def write(infile, outfile, blocks):
             for line in f:
                 if line.strip().startswith('L'):
                     links.append(line.split()[1:])
-                 elif line.strip().startswith('P'):
+                elif line.strip().startswith('P'):
                     paths.append(line.split()[1:])
     sortedBlocks=sorted(blocks, key=lambda b: b.order()) # sorted list of nodes
     with open(outfile, 'w') as f:
@@ -32,21 +45,27 @@ def write(infile, outfile, blocks):
         for p in paths:
             f.write('P'+'\t'+p[0]+'\t')
             x=p[1].split(',')
+            cigars = p[2].split(',')
             for i in range(len(x)):
-                if blocks[int(x[i][:-1])-1].orientation()==strand(x[i][-1]):
-                    x[i]=x[i][:-1]+'+'
-                else: x[i]=x[i][:-1]+'-'
-            f.write(','.join(x)+'\t'+p[2]+'\n')
+                v = x[i][:-1]
+                if blocks[int(v)-1].orientation() == strand(x[i][-1]):
+                    x[i] = v + '+'
+                else:
+                    x[i] = v + '-'
+                if blocks[int(v)-1].orientation() == -1:
+                    cigars[i] = reverseCigar(cigars[i])
+            f.write(','.join(x)+'\t'+','.join(cigars)+'\n')
+        d = {1:'+', -1: '-'}
         for l in links:
-            if blocks[int(l[0])-1].orientation() == strand(l[1]):
-                 l[1]='+'
+            if blocks[int(l[0])-1].order() <= blocks[int(l[2])-1].order():
+                l[1] = d[blocks[int(l[0])-1].orientation()*strand(l[1])]
+                l[3] = d[blocks[int(l[2])-1].orientation()*strand(l[3])]
             else:
-                 l[1]='-'
-            if blocks[int([2])-1].orientation() == strand(l[3]):
-                 l[3]='+'
-            else:
-                 l[3]='-'
-        links.sort(key=lambda x: (blocks[int(x[0])].order(), blocks[int(x[2])].order()))
+                s1 = d[-1*blocks[int(l[2])-1].orientation()*strand(l[3])]
+                s2 = d[-1*blocks[int(l[0])-1].orientation()*strand(l[1])]
+                l[0], l[2] = l[2], l[0]
+                l[1], l[3] = s1, s2
+        links.sort(key=lambda x: (blocks[int(x[0])-1].order(), blocks[int(x[2])-1].order()))
         for l in links:
             f.write('L'+'\t'+'\t'.join(l)+'\n')
             
