@@ -2,11 +2,17 @@
 
 ## Installation
 1. Clone this repository:
-```git clone https://github.com/anialisiecka/ALIBI.git```
+```
+git clone https://github.com/anialisiecka/ALIBI.git
+```
 2. Change directory:
-```cd ALIBI```
+```
+cd ALIBI
+```
 3. Run the setup.py file from that directory:
-```python setup.py install```
+```
+python setup.py install
+```
 
 ## Input
 ALIBI requires as input a GFA file with a sequence graph.
