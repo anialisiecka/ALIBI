@@ -21,7 +21,7 @@ ALIBI requires as input a GFA file with a sequence graph.
 ALIBI linearizes the genome sequence graph present in the input file. The final linearized graph is written to a GFA file.
 
 ## Usage
-To use ALIBI you need to be in the ```bin``` subfolder of  the ```ALIBI``` folder.
+To use ALIBI you need to be in the ALIBI folder.
 ```
 bash alibi.sh -i <input_file>
 ```
