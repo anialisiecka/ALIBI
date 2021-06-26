@@ -1,5 +1,9 @@
 # ALIBI - Algorithm for Linearization by Incremental graph BuIlding
 
+## Prerequisites
+Running:
+* [Python 3](https://www.python.org/) 
+
 ## Installation
 1. Clone this repository:
 ```
