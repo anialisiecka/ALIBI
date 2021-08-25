@@ -31,11 +31,11 @@ def write(infile, outfile, blocks):
     links=[]
     paths=[]
     with open(infile) as f:
-            for line in f:
-                if line.strip().startswith('L'):
-                    links.append(line.split()[1:])
-                elif line.strip().startswith('P'):
-                    paths.append(line.split()[1:])
+        for line in f:
+            if line.strip().startswith('L'):
+                links.append(line.split()[1:])
+            elif line.strip().startswith('P'):
+                paths.append(line.split()[1:])
     sortedBlocks=sorted(blocks, key=lambda b: b.order()) # sorted list of nodes
     with open(outfile, 'w') as f:
         f.write('H'+'\t'+'VN:Z:1.0'+'\n')
