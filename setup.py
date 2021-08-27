@@ -6,5 +6,5 @@ setup(name='alibi',
       author='Anna Lisiecka',
       url='https://github.com/anialisiecka/ALIBI',
       packages=find_packages(),
-      #install_requires=[]
+      install_requires=['biopython']
      )
