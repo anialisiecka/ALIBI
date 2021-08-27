@@ -48,8 +48,8 @@ def write_gfa(infile, outfile, blocks):
         f.write('H'+'\t'+'VN:Z:1.0'+'\n')
         for b in sortedBlocks:
             if b.orientation() == -1:
-                b.seq = str(Seq(b.seq).reverse_complement())
-            f.write('S'+'\t'+str(b.id+1)+'\t'+b.seq+'\n')
+                b.alignment = str(Seq(b.alignment).reverse_complement())
+            f.write('S' + '\t' + str(b.id+1) + '\t' + b.alignment + '\n')
         for p in paths:
             f.write('P'+'\t'+p[0]+'\t')
             x = p[1].split(',')
@@ -62,7 +62,7 @@ def write_gfa(infile, outfile, blocks):
                     x[i] = v + '-'
                 if blocks[int(v)-1].orientation() == -1:
                     cigars[i] = reverseCigar(cigars[i])
-            f.write(','.join(x)+'\t'+','.join(cigars)+'\n')
+            f.write(','.join(x) + '\t' + ','.join(cigars) + '\n')
         d = {1:'+', -1: '-'}
         for l in links:
             if blocks[int(l[0])-1].order() <= blocks[int(l[2])-1].order():
@@ -75,4 +75,4 @@ def write_gfa(infile, outfile, blocks):
                 l[1], l[3] = s1, s2
         links.sort(key=lambda x: (blocks[int(x[0])-1].order(), blocks[int(x[2])-1].order()))
         for l in links:
-            f.write('L'+'\t'+'\t'.join(l)+'\n')
+            f.write('L' + '\t' + '\t'.join(l) + '\n')
