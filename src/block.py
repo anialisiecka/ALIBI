@@ -52,3 +52,11 @@ class Block:
         otheroot.flanks[flank] += selfroot.flanks[-1]+selfroot.flanks[1]+1
         selfroot.toroot = otheroot
         del selfroot.flanks
+        
+    def orient_maf_block(self):
+        # Modify alignment according to block orientation
+        if self.orientation() == -1:
+            for u in self.alignment:
+                u.seq = u.seq.reverse_complement()
+                u.annotations["strand"] *= -1
+                u.annotations["start"] = u.annotations["srcSize"] - u.annotations["size"] - u.annotations["start"]
