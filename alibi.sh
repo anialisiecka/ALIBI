@@ -26,4 +26,4 @@ while test $# -gt 0; do
   esac
 done
 
-python3 ./bin/gfaSorter.py $INPUT
+python3 ./src/sort.py $INPUT
