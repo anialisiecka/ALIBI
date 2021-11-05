@@ -17,7 +17,7 @@ def addEdgeWithinComponent(e, w, G, blocks):
     x, y = e[0], e[2]
     lb = blocks[y].order()
     ub = blocks[x].order()
-    if lb is ub: G.fa += w
+    if lb is ub: G.fa.add(e)
     elif lb < ub:
         R_f = G.dfsF(y, blocks, ub)
         if R_f:
