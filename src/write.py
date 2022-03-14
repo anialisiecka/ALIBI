@@ -60,7 +60,7 @@ def write_gfa(infile, outfile, blocks):
                     x[i] = v + '+'
                 else:
                     x[i] = v + '-'
-                if blocks[int(v)-1].orientation() == -1:
+                if cigars[0] != '*' and blocks[int(v)-1].orientation() == -1:
                     cigars[i] = reverseCigar(cigars[i])
             f.write(','.join(x) + '\t' + ','.join(cigars) + '\n')
         d = {1:'+', -1: '-'}
