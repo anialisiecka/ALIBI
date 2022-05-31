@@ -36,7 +36,28 @@ def addEdgeBetweenComponents(e, blocks):
         reverse = -1
     if blocks[e[0]].orientation()*e[1] < 0:
         flank = -1
-    blocks[e[2]].unionto(blocks[e[0]], reverse, flank)
+    
+    if flank == 1 and blocks[e[0]].order() == blocks[e[0]].maximum():
+        blocks[e[2]].unionto(blocks[e[0]], reverse, flank)
+    elif flank == -1 and blocks[e[0]].order() == blocks[e[0]].minimum():
+        blocks[e[2]].unionto(blocks[e[0]], reverse, flank)
+    else:
+        c_end = 0
+        c_midst = 0
+        if flank==1:
+            c_end += blocks[e[0]].maximum() - blocks[e[0]].order()
+        else:
+            c_end += blocks[e[0]].order() - blocks[e[0]].minimum()
+
+        n = blocks[e[0]].order()
+        k = blocks[e[2]].size()
+        for u in G.graph[e[0]]:
+            c_midst += k
+
+        if c_end <= c_midst:
+            blocks[e[2]].unionto(blocks[e[0]], reverse, flank)
+        else:
+            blocks[e[2]].uniontoMidst(blocks[e[0]], reverse, flank, blocks)
 
 def connect_components(blocks):
     if len(blocks) != blocks[0].size(): 
