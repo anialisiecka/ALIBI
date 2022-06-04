@@ -7,5 +7,5 @@ It is assumed thet the order of the nodes is specified by the order of the "S" l
 To run the script execute the following shell command:
 
 ```
-python metrics.py <gfa_input_file>
+python3 metrics.py <gfa_input_file>
 ```
