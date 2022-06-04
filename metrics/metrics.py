@@ -23,7 +23,8 @@ def metrics(infile):
                     elif path[i][-1]!=path[i+1][-1]:
                         wrj+=1
 
-    print (wfa, wrj)
+    print ("wfa: ", wfa)
+    print ("wrj: ", wrj)
 
 def main():
     infile = sys.argv[1]
