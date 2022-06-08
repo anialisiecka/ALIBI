@@ -17,7 +17,7 @@ def addEdgeWithinComponent(e, w, G, blocks):
     x, y = e[0], e[2]
     lb = blocks[y].order()
     ub = blocks[x].order()
-    if lb is ub: G.fa.add(e)
+    if lb == ub: G.fa.add(e)
     elif lb < ub:
         R_f = G.dfsF(y, blocks, ub)
         if R_f:
@@ -32,7 +32,7 @@ def addEdgeBetweenComponents(e, blocks):
     reverse, flank = 1, 1
     if blocks[e[0]].size() < blocks[e[2]].size():
         e = e[2:] + e[:2]
-    if blocks[e[0]].orientation()*blocks[e[2]].orientation() is e[1]*e[3]:
+    if blocks[e[0]].orientation()*blocks[e[2]].orientation() == e[1]*e[3]:
         reverse = -1
     if blocks[e[0]].orientation()*e[1] < 0:
         flank = -1
@@ -99,7 +99,7 @@ def linSort(infile):
     outfile = os.path.splitext(infile)[0] + '_sorted.' + in_format
     for e, w in edges:
         if blocks[e[0]].find() is blocks[e[2]].find():
-            if blocks[e[0]].orientation()*blocks[e[2]].orientation() is e[1]*e[3]:
+            if blocks[e[0]].orientation()*blocks[e[2]].orientation() == e[1]*e[3]:
                 G.rj.add(e)
                 continue
             elif blocks[e[0]].orientation()*e[1] > 0:
