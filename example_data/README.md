@@ -1,4 +1,5 @@
-####Performance on *Escherichia coli* genomes
+#### Performance on *Escherichia coli* genomes
+
 We compared both versions of ALIBI against two linearization algorithms implemented in [vg tool](https://github.com/vgteam/vg):
 **Eades** is the implementation of a well-known heuristic for the feedback arc set problem of
 [Eades et al. (1993)](https://scholar.google.com/scholar_lookup?journal=Inf.+Process.+Lett.&title=A+fast+and+effective+heuristic+for+the+feedback+arc+set+problem&author=P.+Eades&author=X.+Lin&author=W.F.+Smyth&volume=47&publication_year=1993&pages=319-323&)
