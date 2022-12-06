@@ -27,7 +27,7 @@ def addEdgeWithinComponent(e, w, G, blocks):
         else:  G.fa.add(e)
     else: G.addEdge(x,y)
     
-def addEdgeBetweenComponents(e, blocks):
+def addEdgeBetweenComponents(e, blocks, G):
     # Add edge between blocks of different components
     reverse, flank = 1, 1
     if blocks[e[0]].size() < blocks[e[2]].size():
@@ -107,7 +107,7 @@ def linSort(infile):
             else:
                 addEdgeWithinComponent(e[2:]+e[:2], w, G, blocks)
         else:
-            addEdgeBetweenComponents(e, blocks)
+            addEdgeBetweenComponents(e, blocks, G)
             G.addEdge(e[0], e[2])
     connect_components(blocks)
     if in_format == 'maf':
